@@ -1,0 +1,17 @@
+
+# Main server config
+server:
+  # Port to listen on for HTTP
+  port: 8077
+  # FQDN for the server
+  domain: 'lol.txxj.xyz'
+  # Wheter to enable HTTPS in strings
+  https: true
+logging:
+  # Whether to enable logging at all
+  enabled: true
+  # Can be direct path
+  path: 'app.log'
+  # Logging level to print to `stdout`
+  # Possible levels: 'ERROR | INFO | DEBUG | TRACE'
+  level: 'INFO'
