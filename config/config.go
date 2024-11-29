@@ -8,21 +8,35 @@ import (
 )
 
 func Load() {
-  _, err := os.Stat("local.config.yaml")
-  if err != nil {
-    panic(fmt.Errorf("failed to load local.config.yaml %w", err))
-  }
+	_, err := os.Stat("local.config.yaml")
+	if err != nil {
+		panic(fmt.Errorf("failed to load local.config.yaml %w", err))
+	}
 	viper.SetConfigName("local.config")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
-  err = viper.ReadInConfig()
+	err = viper.ReadInConfig()
 	if err != nil {
 		panic(fmt.Errorf("fatal error config file: %w", err))
 	}
-  fmt.Println("loaded 'local.config.yaml' OK")
+	fmt.Println("loaded 'local.config.yaml' OK")
 
-  if (viper.GetBool("debug.enabled")) {
-    fmt.Println("debug mode: enabled")
-    fmt.Println(viper.AllSettings())
-  }
+	if viper.GetBool("debug.enabled") {
+		fmt.Println("debug mode: enabled")
+		fmt.Println(viper.AllSettings())
+	}
 }
+
+// TODO: Something like this to to check config types and maybe a regex
+// func ModeCheck() ConfigSettings {
+//   _, err := os.Stat("prod.config.yaml")
+//   if err != nil {
+//     return ConfigSettings{ Prod: false }
+//   }
+//
+//   return ConfigSettings{}
+// }
+//
+// type ConfigSettings struct {
+//   Prod bool `json:"prod"`
+// }
