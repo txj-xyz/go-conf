@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/txj-xyz/go-conf/config"
+)
 
 func main() {
-  fmt.Println("Hello from main")
+	fmt.Println("Hello from main")
+	config.Load()
+
 }
