@@ -10,12 +10,12 @@ import (
 func Load() {
   _, err := os.Stat("local.config.yaml")
   if err != nil {
-    panic(fmt.Errorf("failed to locate local.config.yaml file", err))
+    panic(fmt.Errorf("failed to load local.config.yaml %w", err))
   }
 	viper.SetConfigName("local.config")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
-  err := viper.ReadInConfig()
+  err = viper.ReadInConfig()
 	if err != nil {
 		panic(fmt.Errorf("fatal error config file: %w", err))
 	}
@@ -25,8 +25,4 @@ func Load() {
     fmt.Println("debug mode: enabled")
     fmt.Println(viper.AllSettings())
   }
-}
-
-type Config struct {
-
 }
