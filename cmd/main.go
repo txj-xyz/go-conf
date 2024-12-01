@@ -8,6 +8,12 @@ import (
 
 func main() {
 	fmt.Println("Hello from main")
-	config.Load()
+	cfg, err := config.Load()
+	if err != nil {
+		fmt.Errorf("error loading config: %v", err)
+	}
+
+	// fmt.Printf("config loaded from main: %v", cfg)
+	cfg.PrettyPrint()
 
 }
